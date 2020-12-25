@@ -2,4 +2,4 @@
 
 ## Adding All Features to be Implemented 
 
-Technologies Used - Nodejs , WebRTC 
+1) Technologies Used - Nodejs , WebRTC 

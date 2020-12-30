@@ -31,6 +31,9 @@ io.on('connection' , socket => {
         console.log('room - joined '); 
         socket.join(roomID);
         socket.to(roomID).broadcast.emit('user-connected' , userId ) ; 
+        socket.on('message' , message => {
+            io.to(roomID).emit('create-message' , message) ;
+        })
     })
 })
 

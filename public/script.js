@@ -46,7 +46,7 @@ navigator.mediaDevices.getUserMedia({
     
     socket.on('create-message' , message => {
       console.log(`this is comming fron server ${message}`);
-      $('ul').append(`<li class = "message"><b>user</b>${message}</li>`)
+      $('ul').append(`<li class = "message"><b>user : </b>${message}</li>`)
       scrollToBottom();
     })
 
@@ -57,6 +57,11 @@ peer.on('open' , id=> {
     socket.emit('join-room' , ROOM_ID , id );
 })
 
+socket.on('user-disconnected', userId => {
+  if (peers[userId]) peers[userId].close()
+})
+
+
 
 const connectToNewUser = (userId , stream) => {
     console.log(`new-user ${userId}`);
@@ -65,6 +70,11 @@ const connectToNewUser = (userId , stream) => {
     call.on('stream' , userVideoStream => {
         addVideoStream(video , userVideoStream ) ;
     })
+    call.on('close', () => {
+      video.remove()
+    })
+  
+    peers[userId] = call
 }
 
 const addVideoStream = (video , stream ) =>  {
@@ -145,3 +155,5 @@ const scrollToBottom = () => {
     let d = $('.main_chat_window');
     d.scrollTop(d.prop("scrollHeight"));
 }
+
+

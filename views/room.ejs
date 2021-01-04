@@ -41,7 +41,7 @@
                         <i class="fas fa-user-friends"></i>
                         <span>Participants</span>
                      </div>
-                     <div class="main_controls_button">
+                     <div class="main_controls_button" id="chat_btn">
                         <i class="fas fa-comment-alt"></i>
                         <span>Chat</span>
                      </div>
@@ -53,17 +53,17 @@
                  </div>
             </div>
         </div>
-        <div class="main_right">
+        <div class="main_right" id="main_right">
             <div class="main_header">
-                <h5> CHAT </h5>
+                <h5> <span class="live"></span> Chat </h5>
             </div>
-            <div class="main_chat_window">
-                <ul class="messages">
-
+            <div class="main_chat_window" id="main_chat_window">
+                <ul class="messages" id="all_messages">
                 </ul>
             </div>
             <div class="main_message_container">
                 <input id ="chat_message" type="text" placeholder="Type your message here...">
+                <button class="sendMsg" id="sendMsg" > <i class="fa fa-paper-plane"></i></button>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@ myvideo.muted = true ;
 var peer = new Peer(undefined , {
     path : '/peerjs',
     host : '/',
-    port : '443'
+    port : 3030
 }); 
 
 
@@ -57,12 +57,6 @@ peer.on('open' , id=> {
     socket.emit('join-room' , ROOM_ID , id );
 })
 
-socket.on('user-disconnected', userId => {
-  if (peers[userId]) peers[userId].close()
-})
-
-
-
 const connectToNewUser = (userId , stream) => {
     console.log(`new-user ${userId}`);
     const call = peer.call(userId , stream);
@@ -74,7 +68,7 @@ const connectToNewUser = (userId , stream) => {
       video.remove()
     })
   
-    peers[userId] = call
+    peer[userId] = call
 }
 
 const addVideoStream = (video , stream ) =>  {
